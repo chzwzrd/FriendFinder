@@ -205,25 +205,74 @@
         
         $(window).on('load', (e) => {
 
-            // form validation
-            if ($('#name').val() === '' ||
-                $('#photo').val() === '' ||
-                $('#q1').val() === 'default' ||
-                $('#q2').val() === 'default' ||
-                $('#q3').val() === 'default' ||
-                $('#q4').val() === 'default' ||
-                $('#q5').val() === 'default' ||
-                $('#q6').val() === 'default' ||
-                $('#q7').val() === 'default' ||
-                $('#q8').val() === 'default' ||
-                $('#q9').val() === 'default' ||
-                $('#q10').val() === 'default') {
-                $('.submit').on('click', (e) => {
-                    e.preventDefault();
-                    alert('Oops, make sure to complete all fields and questions!');
-                });
-            }
+            $('.submit').on('click', (e) => {
 
+                e.preventDefault();
+
+                // FORM VALIDATION
+                // =====================================================================================
+                if ($('#name').val() === '' ||
+                    $('#photo').val() === '' ||
+                    $('#q1').val() === 'default' ||
+                    $('#q2').val() === 'default' ||
+                    $('#q3').val() === 'default' ||
+                    $('#q4').val() === 'default' ||
+                    $('#q5').val() === 'default' ||
+                    $('#q6').val() === 'default' ||
+                    $('#q7').val() === 'default' ||
+                    $('#q8').val() === 'default' ||
+                    $('#q9').val() === 'default' ||
+                    $('#q10').val() === 'default') {
+                    $('.submit').on('click', (e) => {
+                        e.preventDefault();
+                        alert('Oops, make sure to complete all fields and questions!');
+                    });
+
+                // HTTP POST REQUEST
+                // =====================================================================================
+                } else {
+
+                    var answers = {
+                        name: $('#name').val().trim(),
+                        photo: $('#photo').val().trim(),
+                        scores: [
+                            $('#q1').val(),
+                            $('#q2').val(),
+                            $('#q3').val(),
+                            $('#q4').val(),
+                            $('#q5').val(),
+                            $('#q6').val(),
+                            $('#q7').val(),
+                            $('#q8').val(),
+                            $('#q9').val(),
+                            $('#q10').val()
+                        ]
+                    };
+
+                    axios.post('/api/friends', answers)
+                        .then((res) => {
+                            console.log(res.data);
+                            // console.log(typeof res.data.scores[0]);
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                        });
+
+                    $('#name').val('');
+                    $('#photo').val('');
+                    $('#q1').val('default');
+                    $('#q2').val('default');
+                    $('#q3').val('default');
+                    $('#q4').val('default');
+                    $('#q5').val('default');
+                    $('#q6').val('default');
+                    $('#q7').val('default');
+                    $('#q8').val('default');
+                    $('#q9').val('default');
+                    $('#q10').val('default');
+                }
+
+            });
         });
         
     </script>

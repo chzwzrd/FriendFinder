@@ -12,7 +12,9 @@ router.get('/friends', (req, res) => {
 });
 
 router.post('/friends', (req, res) => {
-    res.json(req.body);
+    var newFriend = req.body;
+    friends.push(newFriend);
+    res.json(newFriend);
 });
 
 // EXPORT
