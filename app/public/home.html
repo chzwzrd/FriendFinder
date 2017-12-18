@@ -36,11 +36,11 @@
     <!-- JavaScript -->
     <script>
     
-        // $(window).on('load', (e) => {
-        //     $('#friends').on('click', () => {
-        //         axios.post('/friends', )
-        //     });
-        // });
+        $(window).on('load', (e) => {
+            $('#friends').on('click', () => {
+                axios.get('/api/friends');
+            });
+        });
     
     </script>
 </body>
