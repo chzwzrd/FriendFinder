@@ -17,6 +17,17 @@ app.use('/', htmlRoutes);
 // specify port
 var PORT = process.env.PORT || 3000;
 
+// ROUTING
+// =====================================================================================
+// app.use(function(req, res) {
+//     res.sendFile(path.join(__dirname, './app/public/home.html'));
+// });
+
+// does same thing as above in different way
+app.get('*', function(req, res) {
+    res.redirect('/');
+});
+
 // LISTENING
 // =====================================================================================
 // create port listener
