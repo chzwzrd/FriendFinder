@@ -29,9 +29,9 @@
 <body>
 
     <div class="container">
+
         <h2>Questionnaire</h2>
         <hr />
-
         <form>
             <!-- ABOUT YOU -->
             <!-- ========================================================================================= -->
@@ -188,14 +188,40 @@
 
         <hr />
 
+        <!-- FOOTER LINKS -->
+        <!-- ========================================================================================= -->
         <div class="links">
+            <a href="/">Home Page</a> |
             <a href="/api/friends">API Friends List</a> |
             <a href="https://github.com/chzwzrd/FriendFinder/">GitHub Repo</a>
         </div>
     </div>
+    
+    <!-- FORM VALIDATION MODAL -->
+    <!-- ========================================================================================= -->
+    <div class="modal fade" id="validator" tabindex="-1" role="dialog" aria-labelledby="validatorLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="validatorLabel"></h4>
+                </div>
+                <div class="modal-body">
+                     <h4>Oops, make sure to fill out all fields!</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <!-- ========================================================================================= -->
 
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Bootstrap JavaScript (always goes beneath jQuery CDN) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Axios CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
@@ -223,15 +249,15 @@
                     $('#q8').val() === 'default' ||
                     $('#q9').val() === 'default' ||
                     $('#q10').val() === 'default') {
-                    $('.submit').on('click', (e) => {
-                        e.preventDefault();
-                        alert('Oops, make sure to complete all fields and questions!');
-                    });
+                        $('.submit').attr('data-toggle', 'modal');
+                        $('.submit').attr('data-target', '#validator');
+                        // alert('Oops, make sure to complete all fields and questions!');
 
                 // HTTP POST REQUEST
                 // =====================================================================================
                 } else {
 
+                    // create object that will be sent as json in post request
                     var answers = {
                         name: $('#name').val().trim(),
                         photo: $('#photo').val().trim(),
@@ -257,7 +283,8 @@
                         .catch((err) => {
                             console.error(err);
                         });
-
+                    
+                    // clear out form
                     $('#name').val('');
                     $('#photo').val('');
                     $('#q1').val('default');
