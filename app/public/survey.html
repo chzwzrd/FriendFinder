@@ -23,6 +23,13 @@
     .links {
         margin-bottom: 30px;
     }
+    #match-photo {
+        width: 200px;
+        margin-bottom: 10px;
+    }
+    #match-message {
+        font-size: 16px;
+    }
 </style>
 
 </head>
@@ -183,7 +190,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-info btn-lg submit"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
+            <button type="submit" class="btn btn-info btn-lg submit" data-toggle="modal"><span class="glyphicon glyphicon-ok-sign"></span> Submit</button>
         </form>
 
         <hr />
@@ -227,7 +234,8 @@
                     <h4 class="modal-title" id="matchFoundLabel"></h4>
                 </div>
                 <div class="modal-body" id="matchFoundModalBody">
-                    
+                    <img id="match-photo" src="#" alt="match photo" />
+                    <p id="match-message"></p>
                 </div>
             </div>
         </div>
@@ -267,9 +275,7 @@
                     $('#q8').val() === 'default' ||
                     $('#q9').val() === 'default' ||
                     $('#q10').val() === 'default') {
-                        $('.submit').attr('data-toggle', 'modal');
-                        $('.submit').attr('data-target', '#validator');
-                        // alert('Oops, make sure to complete all fields and questions!');
+                        $('#validator').modal('toggle');
 
                 // HTTP POST REQUEST
                 // =====================================================================================
@@ -296,16 +302,14 @@
                     axios.post('/api/friends', answers)
                         .then((res) => {
                             console.log(res.data);
-                            $('.submit').attr('data-toggle', 'modal');
-                            $('.submit').attr('data-target', '#matchFound');
 
-                            var img = $('<img id="match-photo">');
-                            img.attr('src', res.data[1]);
-                            var h1 = $('<h1 id="match-name">');
-                            h1.html(res.data[0]);
+                            var percentCompatible = (40 - res.data[2]) / 40 * 100;
 
-                            $('#matchFoundModalBody').append(h1);
-                            $('#matchFoundModalBody').append(img);
+                            $('.modal-title').text(`Your new soul buddy is...${res.data[0]}!`);
+                            $('#match-photo').attr('src', res.data[1]);
+                            $('#match-message').text(`Congrats! You and ${res.data[0]} are ${percentCompatible}% compatible!`);
+
+                            $('#matchFound').modal('toggle');
                         })
                         .catch((err) => {
                             console.error(err);

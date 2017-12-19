@@ -18,7 +18,7 @@ router.post('/friends', (req, res) => {
     newFriend.scores = newFriend.scores.map(Number);
 
     // console insight
-    console.log();
+    console.log('\n========== USER ==========');
     console.log(newFriend);
 
     // find which friend most compatible (smallest total difference in scores)
@@ -41,7 +41,7 @@ function compareScores(user) {
         friendProfiles: [],
         friendResults: []
     }
-    
+
     for (var i = 0; i < friends.length; i++) {
         var totalDifference = 0;
         for (var j = 0; j < user.scores.length; j++) {
@@ -51,9 +51,9 @@ function compareScores(user) {
         friendInfo.friendResults.push(totalDifference);
     }
 
-    console.log('====================');
+    console.log('========== FRIEND PROFILES ==========');
     console.log(friendInfo.friendProfiles);
-    console.log('====================');
+    console.log('========== FRIEND RESULTS ==========\n');
     console.log(friendInfo.friendResults);
     console.log();
 
