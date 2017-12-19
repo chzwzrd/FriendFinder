@@ -37,25 +37,28 @@ router.post('/friends', (req, res) => {
 // compare user's scores with each existing friend & find total difference in scores for each
 function compareScores(user) {
 
-    var friendInfo = [];
-    var friendResults = [];
+    var friendInfo = {
+        friendProfiles: [],
+        friendResults: []
+    }
+    
     for (var i = 0; i < friends.length; i++) {
         var totalDifference = 0;
         for (var j = 0; j < user.scores.length; j++) {
             totalDifference += Math.abs(user.scores[j] - friends[i].scores[j]);
         }
-        friendInfo.push([friends[i].name, friends[i].photo], totalDifference);
-        friendResults.push(totalDifference);
+        friendInfo.friendProfiles.push([friends[i].name, friends[i].photo, totalDifference]);
+        friendInfo.friendResults.push(totalDifference);
     }
 
     console.log('====================');
-    console.log(friendInfo);
+    console.log(friendInfo.friendProfiles);
     console.log('====================');
-    console.log(friendResults);
+    console.log(friendInfo.friendResults);
     console.log();
 
-    var friendMatchIndex = findMinIndex(friendResults);
-    return friendInfo[friendMatchIndex];
+    var friendMatchIndex = findMinIndex(friendInfo.friendResults);
+    return friendInfo.friendProfiles[friendMatchIndex];
 
 }
 

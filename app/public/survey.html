@@ -226,8 +226,8 @@
                     </button>
                     <h4 class="modal-title" id="matchFoundLabel"></h4>
                 </div>
-                <div class="modal-body">
-                    <h4>Oops, make sure to fill out all fields!</h4>
+                <div class="modal-body" id="matchFoundModalBody">
+                    
                 </div>
             </div>
         </div>
@@ -296,6 +296,16 @@
                     axios.post('/api/friends', answers)
                         .then((res) => {
                             console.log(res.data);
+                            $('.submit').attr('data-toggle', 'modal');
+                            $('.submit').attr('data-target', '#matchFound');
+
+                            var img = $('<img id="match-photo">');
+                            img.attr('src', res.data[1]);
+                            var h1 = $('<h1 id="match-name">');
+                            h1.html(res.data[0]);
+
+                            $('#matchFoundModalBody').append(h1);
+                            $('#matchFoundModalBody').append(img);
                         })
                         .catch((err) => {
                             console.error(err);
