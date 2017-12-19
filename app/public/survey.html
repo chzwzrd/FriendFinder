@@ -197,8 +197,9 @@
         </div>
     </div> <!-- /.container -->
     
-    <!-- FORM VALIDATION MODAL -->
+    <!-- MODALS -->
     <!-- ========================================================================================= -->
+    <!-- Form Validation Modal -->
     <div class="modal fade" id="validator" tabindex="-1" role="dialog" aria-labelledby="validatorLabel">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
@@ -210,6 +211,24 @@
                 </div>
                 <div class="modal-body">
                      <h4>Oops, make sure to fill out all fields!</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Found Modal -->
+    <div class="modal fade" id="matchFound" tabindex="-1" role="dialog" aria-labelledby="matchFoundLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="matchFoundLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Oops, make sure to fill out all fields!</h4>
+                </div>
             </div>
         </div>
     </div>
@@ -277,7 +296,6 @@
                     axios.post('/api/friends', answers)
                         .then((res) => {
                             console.log(res.data);
-                            // console.log(typeof res.data.scores[0]);
                         })
                         .catch((err) => {
                             console.error(err);
