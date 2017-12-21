@@ -53,7 +53,7 @@ function compareScores(user) {
 
     console.log('========== FRIEND PROFILES ==========');
     console.log(friendInfo.friendProfiles);
-    console.log('========== FRIEND RESULTS ==========\n');
+    console.log('========== FRIEND RESULTS ==========');
     console.log(friendInfo.friendResults);
     console.log();
 

@@ -1,34 +1,34 @@
 var friends = [
     {
-        name: 'Melodie',
-        photo: 'https://avatars2.githubusercontent.com/u/20732445?s=460&v=4',
+        name: 'Kristen',
+        photo: 'http://4.bp.blogspot.com/_MPvDBGrKaXc/SgoK3yFgkBI/AAAAAAAAAko/1OoZymQMqkg/s400/over-tanned-jersey-girl.jpg',
         scores: [
-            3,
-            2,
-            3,
             1,
-            3,
+            5,
             1,
-            3,
-            2,
-            3,
-            1
+            5,
+            1,
+            5,
+            5,
+            1,
+            1,
+            5
         ]
     },
     {
-        name: 'Jack',
-        photo: 'img',
+        name: 'Seth',
+        photo: 'https://www.manrepeller.com/wp-content/uploads/2016/04/seth-rogan-funny-guy-birthday-man-repeller.jpg',
         scores: [
             5,
+            1,
+            4,
+            1,
+            5,
+            1,
+            4,
+            1,
             3,
-            2,
-            4,
-            1,
-            1,
-            2,
-            2,
-            4,
-            5
+            3
         ]
     }
 ];
