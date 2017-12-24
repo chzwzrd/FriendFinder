@@ -307,7 +307,7 @@
 
                             $('.modal-title').text(`Your soul buddy is...${res.data[0]}!`);
                             $('#match-photo').attr('src', res.data[1]);
-                            $('#match-message').text(`Congrats! You and ${res.data[0]} are ${percentCompatible}% compatible!`);
+                            $('#match-message').text(`Congrats! You and ${res.data[0]} are ${percentCompatible.toFixed(0)}% compatible!`);
 
                             $('#matchFound').modal('toggle');
                         })
